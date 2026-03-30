@@ -1,0 +1,320 @@
+@import "tailwindcss";
+
+/* ─── Font Variables ───────────────────────────────────────── */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── Design Tokens ────────────────────────────────────────── */
+:root {
+  --clr-bg: #000000;
+  --clr-fg: #ffffff;
+  --clr-muted: #bfbfbf;
+  --clr-divider: rgba(255, 255, 255, 0.08);
+  --clr-surface: rgba(255, 255, 255, 0.03);
+
+  --section-py-desktop: 140px;
+  --section-py-mobile: 80px;
+  --container-max: 1200px;
+  --container-px: 32px;
+}
+
+/* ─── Reset ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 2px;
+}
+
+/* ─── Typography Scale ─────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  text-transform: uppercase;
+  color: var(--clr-fg);
+}
+
+/* h1 → Hero headline */
+h1 {
+  font-size: clamp(72px, 9vw, 120px);
+  line-height: 0.95;
+}
+
+/* h2 → Section titles */
+h2 {
+  font-size: clamp(40px, 4.5vw, 56px);
+  line-height: 1.05;
+}
+
+/* h3 → Card / sub-section titles */
+h3 {
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.05;
+}
+
+p {
+  font-size: clamp(16px, 1.15vw, 19px);
+  line-height: 1.75;
+  color: var(--clr-muted);
+}
+
+/* Inline highlight for key phrases */
+.text-hi {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Slightly brighter paragraph variant */
+.text-bright {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ─── Layout Utilities ─────────────────────────────────────── */
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-px);
+}
+
+.section-py {
+  padding-top: var(--section-py-desktop);
+  padding-bottom: var(--section-py-desktop);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-px: 20px;
+  }
+
+  .section-py {
+    padding-top: var(--section-py-mobile);
+    padding-bottom: var(--section-py-mobile);
+  }
+}
+
+/* ─── Section Label ────────────────────────────────────────── */
+.section-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+/* ─── Dividers ─────────────────────────────────────────────── */
+.line {
+  width: 100%;
+  height: 1px;
+  background: var(--clr-divider);
+}
+
+.line-strong {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Buttons ──────────────────────────────────────────────── */
+.btn-outline {
+  position: relative;
+  display: inline-block;
+  padding: 18px 48px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--clr-fg);
+  cursor: pointer;
+  background: transparent;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--clr-fg);
+  transform: translateY(101%);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.btn-outline:hover {
+  border-color: var(--clr-fg);
+  color: var(--clr-bg);
+}
+
+.btn-outline:hover::after {
+  transform: translateY(0);
+}
+
+.btn-outline span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s ease;
+}
+
+/* ─── Video / Fixed Background ─────────────────────────────── */
+.video-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-bg video {
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  top: -10%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.video-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.9) 100%);
+}
+
+/* ─── Grain Texture ─────────────────────────────────────────── */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ─── Gradient BG ───────────────────────────────────────────── */
+.bg-site {
+  background: transparent;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Component: Stepper ───────────────────────────────────── */
+@media (max-width: 640px) {
+  .step-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* ─── Component: Transformations ───────────────────────────── */
+.tf-card {
+  cursor: pointer;
+}
+
+.tf-card .tf-img {
+  opacity: 0.35;
+}
+
+.tf-card:hover .tf-img {
+  transform: scale(1.05);
+  opacity: 0.9;
+  filter: grayscale(40%);
+}
+
+.tf-card:hover .tf-overlay {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .tf-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tf-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─── Component: Offer ─────────────────────────────────────── */
+.offer-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.offer-card--hi:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+}
+
+@media (max-width: 900px) {
+  .offer-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+/* ─── Component: Footer ────────────────────────────────────── */
+.footer-link:hover {
+  opacity: 1 !important;
+  color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+
+  .footer-section {
+    padding-top: var(--section-py-mobile) !important;
+  }
+}

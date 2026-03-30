@@ -46,14 +46,14 @@ export default function Hero({ isReady = false }: HeroProps) {
                 alignItems: "center",
                 justifyContent: "center",
                 textAlign: "center",
-                padding: "0 32px",
+                padding: "0 var(--container-px)",
                 position: "relative",
                 zIndex: 10,
             }}
         >
             <div style={{ maxWidth: 900, width: "100%" }}>
                 {/* H1 — bigger, bolder, tighter leading */}
-                <h1 style={{ marginBottom: 72 }}>
+                <h1 style={{ marginBottom: "clamp(40px, 8vw, 72px)" }}>
                     <div style={{ overflow: "hidden", display: "block" }}>
                         <span ref={line1Ref} style={{ display: "block" }}>
                             Build Strength.

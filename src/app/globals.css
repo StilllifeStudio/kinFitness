@@ -14,10 +14,9 @@
   --clr-divider: rgba(255, 255, 255, 0.08);
   --clr-surface: rgba(255, 255, 255, 0.03);
 
-  --section-py-desktop: 140px;
-  --section-py-mobile: 80px;
+  --section-py: clamp(100px, 12vw, 160px);
   --container-max: 1200px;
-  --container-px: 32px;
+  --container-px: clamp(20px, 5vw, 32px);
 }
 
 /* ─── Reset ────────────────────────────────────────────────── */
@@ -75,19 +74,19 @@ h6 {
 
 /* h1 → Hero headline */
 h1 {
-  font-size: clamp(72px, 9vw, 120px);
+  font-size: clamp(48px, 10vw, 120px);
   line-height: 0.95;
 }
 
 /* h2 → Section titles */
 h2 {
-  font-size: clamp(40px, 4.5vw, 56px);
+  font-size: clamp(32px, 6vw, 56px);
   line-height: 1.05;
 }
 
 /* h3 → Card / sub-section titles */
 h3 {
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(24px, 4vw, 38px);
   line-height: 1.05;
 }
 
@@ -116,19 +115,8 @@ p {
 }
 
 .section-py {
-  padding-top: var(--section-py-desktop);
-  padding-bottom: var(--section-py-desktop);
-}
-
-@media (max-width: 768px) {
-  :root {
-    --container-px: 20px;
-  }
-
-  .section-py {
-    padding-top: var(--section-py-mobile);
-    padding-bottom: var(--section-py-mobile);
-  }
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
 }
 
 /* ─── Section Label ────────────────────────────────────────── */
@@ -246,10 +234,33 @@ p {
 }
 
 /* ─── Component: Stepper ───────────────────────────────────── */
-@media (max-width: 640px) {
+.step-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px 140px;
+  align-items: start;
+}
+
+.step-sticky {
+  position: sticky;
+  top: 120px;
+}
+
+@media (max-width: 1024px) {
   .step-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
+    gap: 32px 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .step-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .step-sticky {
+    position: relative;
+    top: 0;
   }
 }
 
@@ -299,6 +310,13 @@ p {
     grid-template-columns: 1fr !important;
     max-width: 480px;
     margin: 0 auto;
+  }
+}
+
+/* ─── Component: Testimonials  ─────────────────────────────── */
+@media (max-width: 640px) {
+  .testimonials-track {
+    gap: 24px !important;
   }
 }
 

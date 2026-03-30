@@ -91,17 +91,16 @@ export default function Stepper() {
     return (
         <section
             ref={sectionRef}
+            className="section-py"
             style={{
                 position: "relative",
                 zIndex: 10,
                 background: "#000",
-                paddingTop: 180,
-                paddingBottom: 180,
             }}
         >
             <div className="container">
                 {/* Section header */}
-                <div className="stepper-header" style={{ marginBottom: 120 }}>
+                <div className="stepper-header" style={{ marginBottom: "clamp(60px, 10vw, 120px)" }}>
                     <span className="section-label">Process</span>
                     <h2>The Methodology.</h2>
                 </div>
@@ -114,8 +113,8 @@ export default function Stepper() {
                             className="step-row"
                             style={{
                                 borderTop: i === 0 ? "1px solid rgba(255,255,255,0.15)" : "1px solid var(--clr-divider)",
-                                paddingTop: 72,
-                                paddingBottom: 72,
+                                paddingTop: "clamp(48px, 8vw, 72px)",
+                                paddingBottom: "clamp(48px, 8vw, 72px)",
                             }}
                         >
                             {/* Animated highlight rule */}
@@ -124,34 +123,26 @@ export default function Stepper() {
                                 style={{
                                     height: 1,
                                     background: "rgba(255,255,255,0.4)",
-                                    marginTop: -73,
-                                    marginBottom: 72,
+                                    marginTop: "clamp(-73px, -8vw, -49px)",
+                                    marginBottom: "clamp(48px, 8vw, 72px)",
                                     width: "100%",
                                 }}
                             />
 
-                            <div
-                                style={{
-                                    display: "grid",
-                                    gridTemplateColumns: "280px 1fr",
-                                    gap: "32px 240px",
-                                    alignItems: "start",
-                                }}
-                                className="step-grid"
-                            >
+                            <div className="step-grid">
                                 {/* Left: number + title */}
-                                <div style={{ position: "sticky", top: 120 }}>
+                                <div className="step-sticky">
                                     <div
                                         className="step-num"
                                         style={{
                                             fontFamily: "var(--font-heading)",
-                                            fontSize: "clamp(48px, 5vw, 72px)",
+                                            fontSize: "clamp(40px, 8vw, 72px)",
                                             fontWeight: 800,
                                             letterSpacing: "-0.04em",
                                             lineHeight: 1,
                                             color: "#fff",
                                             opacity: 0.08,
-                                            marginBottom: 24,
+                                            marginBottom: 16,
                                         }}
                                     >
                                         {stage.number}
@@ -160,7 +151,7 @@ export default function Stepper() {
                                 </div>
 
                                 {/* Right: description */}
-                                <p className="step-desc text-bright" style={{ paddingTop: 12, maxWidth: 520 }}>
+                                <p className="step-desc text-bright" style={{ paddingTop: 8, maxWidth: 520 }}>
                                     {stage.description}
                                 </p>
                             </div>
